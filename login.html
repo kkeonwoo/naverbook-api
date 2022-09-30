@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>naver</title>
+    <link rel="shortcut icon" href="" type="image/x-icon" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/fancybox.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/greensock/gsap.min.js"></script>
+    <script src="js/dayjs.min.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/fancybox.umd.js"></script>
+    <script src="js/chart.min.js"></script>
+  </head>
+  <body>
+    <header id="header">
+      <h1><strong>NAVER</strong></h1>
+    </header>
+    <main id="main">
+      <input type="text" id="userId" />
+      <input type="password" id="userPw" />
+      <button id="btnLogin">로그인</button>
+    </main>
+  </body>
+  <script>
+    $("#btnLogin").on("click", function () {
+      $.ajax({
+        url: "https://keonwoo-naverbook.herokuapp.com/login",
+        data: {
+          id: $("#userId").val(),
+          pw: $("#userPw").val(),
+        },
+      }).done(function (response) {
+        // console.log(response.isLogged);
+        if (response.isLogged) {
+          location.href = "http://www.daum.net";
+        } else {
+          alert("아이디, 패스워드를 확인해주세요.");
+        }
+      });
+    });
+  </script>
+</html>
