@@ -36,10 +36,10 @@
   </body>
   <script>
     const list = $("#main .list");
-    const bookName = $("#book").val();
+
     function naverBookSearch(bookName) {
+      console.log(bookName);
       $.ajax({ url: `https://keonwoo-naverbook.herokuapp.com/book/${bookName}` }).done((response) => {
-        console.log(response);
         const items = response.items;
         let tempHtml = "";
         $.each(items, function (idx, item) {
@@ -62,11 +62,16 @@
       });
     }
     $("#btnSearch").on("click", (e) => {
+      //버튼을 클릭할때 북의 값을 들고와야함.
+      const bookName = $("#book").val();
       naverBookSearch(bookName);
     });
     $("#book").on("keydown", (e) => {
+      //keyCode할때 C는 대문자
       console.log(e);
-      if (e.keycode === 13) {
+      if (e.keyCode === 13) {
+        const bookName = $("#book").val();
+        console.log("keydown");
         naverBookSearch(bookName);
       }
     });
